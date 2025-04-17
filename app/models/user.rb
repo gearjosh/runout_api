@@ -8,5 +8,7 @@ class User < ApplicationRecord
   has_many :followee_relationships, foreign_key: :follower_id, class_name: "Relationship"
   has_many :followees, through: :followee_relationships, source: :followee
 
+  validates :username, presence: true
+
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 end
